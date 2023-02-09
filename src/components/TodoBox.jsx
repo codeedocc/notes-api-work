@@ -4,8 +4,8 @@ import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import openList from '../assets/openList.svg'
-import { useState } from 'react'
 import TodoList from './TodoList'
+import { useTodoBoxContext } from '../context/TodoContext'
 
 export const StyledPaper = styled(Paper)(() => ({
   maxWidth: 800,
@@ -14,16 +14,11 @@ export const StyledPaper = styled(Paper)(() => ({
 export const message = `Today tasks`
 
 const TodoBox = () => {
-  const [openBox, setOpenBox] = useState(false)
-  const [checked, setChecked] = useState(false)
-
-  const handleToggle = () => {
-    setChecked(!checked)
-  }
+  const contextTodos = useTodoBoxContext()
 
   return (
     <>
-      {!openBox ? (
+      {!contextTodos.openBox ? (
         <Box
           sx={{
             flexGrow: 1,
@@ -80,7 +75,7 @@ const TodoBox = () => {
                   alt="settings"
                   height="30px"
                   width="28.5px"
-                  onClick={() => setOpenBox((prev) => !prev)}
+                  onClick={() => contextTodos.setOpenBox((prev) => !prev)}
                   className="open-close-list"
                 />
               </Grid>
@@ -88,12 +83,7 @@ const TodoBox = () => {
           </StyledPaper>
         </Box>
       ) : (
-        <TodoList
-          checked={checked}
-          handleToggle={handleToggle}
-          openBox={openBox}
-          setOpenBox={setOpenBox}
-        />
+        <TodoList />
       )}
     </>
   )

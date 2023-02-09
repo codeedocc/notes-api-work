@@ -1,5 +1,5 @@
 import { Box, Stack } from '@mui/material'
-import AddTodo from './AddTodo'
+import BottomPanel from './BottomPanel'
 import TodoBox from './TodoBox'
 
 const TodoArea = () => {
@@ -16,7 +16,7 @@ const TodoArea = () => {
           <TodoBox />
         </Box>
       </Stack>
-      <AddTodo />
+      <BottomPanel />
     </>
   )
 }

@@ -3,11 +3,14 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { message, StyledPaper } from './TodoBox'
 import closeList from '../assets/closeList.svg'
+import { useTodoBoxContext } from '../context/TodoContext'
 
-const TodoList = ({ checked, handleToggle, openBox, setOpenBox }) => {
+const TodoList = () => {
+  const contextTodos = useTodoBoxContext()
+
   return (
     <>
-      {openBox && (
+      {contextTodos.openBox && (
         <Box
           sx={{
             flexGrow: 1,
@@ -43,7 +46,7 @@ const TodoList = ({ checked, handleToggle, openBox, setOpenBox }) => {
                 alt="settings"
                 height="30px"
                 width="28.5px"
-                onClick={() => setOpenBox((prev) => !prev)}
+                onClick={() => contextTodos.setOpenBox((prev) => !prev)}
                 className="open-close-list"
               />
               <Typography noWrap sx={{ fontSize: '24px', pl: '15px' }}>
@@ -98,8 +101,8 @@ const TodoList = ({ checked, handleToggle, openBox, setOpenBox }) => {
                     <label className="slider-checkbox round">
                       <input
                         type="checkbox"
-                        checked={checked}
-                        onChange={handleToggle}
+                        checked={contextTodos.done}
+                        onChange={() => contextTodos.setDone((prev) => !prev)}
                         className="checkbox"
                       />
                       <span className="slider"></span>

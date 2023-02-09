@@ -1,3 +1,16 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
 html,
 body {
   margin: 0;
@@ -24,7 +37,7 @@ body {
 
 .slider-checkbox {
   position: relative;
-  display: inline-block;
+  display: inline-news;
   width: 50px;
   height: 30px;
 }
@@ -80,15 +93,34 @@ input:checked + .slider:before {
 
 ::-webkit-scrollbar {
   width: 0px;
-  height: 5px;
+  height: 0px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(114, 113, 113);
-  border-radius: 10px;
-  height: 200px;
+  height: 0px;
 }
 
-::-webkit-scrollbar-track {
-  background-color: transparent;
+.news {
+  height: 20px;
+  width: 100%;
+}
+
+.news p {
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  padding-top: 52px;
+  animation: text 12s infinite linear;
+  padding-left: 100%;
+  white-space: nowrap;
+}
+
+@keyframes text {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(-160%, 0);
+  }
 }
