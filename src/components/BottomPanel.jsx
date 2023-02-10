@@ -1,15 +1,8 @@
 import { Box, Stack } from '@mui/material'
-import Fab from '@mui/material/Fab'
-import AddIcon from '@mui/icons-material/Add'
 import { useQuery } from 'react-query'
 import { useEffect, useState } from 'react'
 import { useNewsContext } from '../context/NewsContext'
-
-const AddButton = () => (
-  <Fab color="default" aria-label="add">
-    <AddIcon />
-  </Fab>
-)
+import AddTodo from './AddTodo'
 
 const NewsPanel = ({ showNews, headline }) => (
   <>
@@ -43,7 +36,7 @@ const BottomPanel = () => {
     const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min
 
     setHeadline(data?.data?.mostPopularEntries?.assets[randomIndex]?.headline)
-  }, [contextNews.showNews])
+  }, [contextNews.showNews, data?.data?.mostPopularEntries?.assets])
 
   if (isLoading) return 'Loading...'
 
@@ -61,7 +54,7 @@ const BottomPanel = () => {
       }}
     >
       <NewsPanel showNews={contextNews.showNews} headline={headline} />
-      <AddButton />
+      <AddTodo />
     </Stack>
   )
 }

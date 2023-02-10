@@ -7,16 +7,42 @@ export const useTodoBoxContext = () => {
 }
 
 export const TodoBoxProvider = ({ children }) => {
-  const [openBox, setOpenBox] = useState(false)
-  const [done, setDone] = useState(false)
+  const [todos, setTodos] = useState([])
+
+  const boxHandler = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.idBox === id) {
+          todo.isOpened = !todo.isOpened
+        }
+        return todo
+      })
+    )
+  }
+
+  const doneHandler = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        return {
+          ...todo,
+          notes: todo.notes.map((note) => {
+            if (note.id === id) {
+              return { ...note, completed: !note.completed }
+            }
+            return note
+          }),
+        }
+      })
+    )
+  }
 
   return (
     <TodoBoxContext.Provider
       value={{
-        openBox,
-        setOpenBox,
-        done,
-        setDone,
+        todos,
+        setTodos,
+        boxHandler,
+        doneHandler,
       }}
     >
       {children}

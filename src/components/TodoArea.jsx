@@ -1,8 +1,11 @@
 import { Box, Stack } from '@mui/material'
+import { useTodoBoxContext } from '../context/TodoContext'
 import BottomPanel from './BottomPanel'
 import TodoBox from './TodoBox'
 
 const TodoArea = () => {
+  const contextTodos = useTodoBoxContext()
+
   return (
     <>
       <Stack sx={{ flexDirection: 'column' }}>
@@ -13,7 +16,9 @@ const TodoArea = () => {
             color: '#fff',
           }}
         >
-          <TodoBox />
+          {contextTodos.todos.map((todo) => (
+            <TodoBox todo={todo} key={todo.idBox} />
+          ))}
         </Box>
       </Stack>
       <BottomPanel />

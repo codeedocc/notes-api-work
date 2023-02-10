@@ -11,14 +11,12 @@ export const StyledPaper = styled(Paper)(() => ({
   maxWidth: 800,
 }))
 
-export const message = `Today tasks`
-
-const TodoBox = () => {
+const TodoBox = ({ todo }) => {
   const contextTodos = useTodoBoxContext()
 
   return (
     <>
-      {!contextTodos.openBox ? (
+      {!todo.isOpened ? (
         <Box
           sx={{
             flexGrow: 1,
@@ -66,8 +64,16 @@ const TodoBox = () => {
                   justifyContent: 'space-between',
                 }}
               >
-                <Typography noWrap sx={{ fontSize: '24px' }}>
-                  {message}
+                <Typography
+                  noWrap
+                  sx={{
+                    fontSize: '24px',
+                    fontWeight: 600,
+                    fontFamily: 'Abhaya Libre SemiBold',
+                    color: '#F4F4F4',
+                  }}
+                >
+                  {todo.title}
                 </Typography>
 
                 <img
@@ -75,7 +81,7 @@ const TodoBox = () => {
                   alt="settings"
                   height="30px"
                   width="28.5px"
-                  onClick={() => contextTodos.setOpenBox((prev) => !prev)}
+                  onClick={() => contextTodos.boxHandler(todo.idBox)}
                   className="open-close-list"
                 />
               </Grid>
@@ -83,7 +89,7 @@ const TodoBox = () => {
           </StyledPaper>
         </Box>
       ) : (
-        <TodoList />
+        <TodoList todo={todo} />
       )}
     </>
   )

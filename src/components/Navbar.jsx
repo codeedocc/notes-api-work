@@ -44,7 +44,15 @@ const Navbar = () => {
         zIndex: 1,
       }}
     >
-      <h1>To Do</h1>
+      <p
+        style={{
+          fontWeight: 400,
+          fontSize: '36px',
+          fontFamily: 'Actor',
+        }}
+      >
+        To Do
+      </p>
       <div>
         <Button id="basic-button" onClick={handleClick}>
           <img
