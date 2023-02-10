@@ -1,3 +1,4 @@
+import { useTodoBoxContext } from '../context/TodoContext'
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
@@ -5,14 +6,13 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import openList from '../assets/openList.svg'
 import TodoList from './TodoList'
-import { useTodoBoxContext } from '../context/TodoContext'
 
 export const StyledPaper = styled(Paper)(() => ({
   maxWidth: 800,
 }))
 
 const TodoBox = ({ todo }) => {
-  const contextTodos = useTodoBoxContext()
+  const { boxHandler } = useTodoBoxContext()
 
   return (
     <>
@@ -53,6 +53,7 @@ const TodoBox = ({ todo }) => {
                   }}
                 ></Box>
               </Grid>
+
               <Grid
                 item
                 xs
@@ -81,7 +82,7 @@ const TodoBox = ({ todo }) => {
                   alt="settings"
                   height="30px"
                   width="28.5px"
-                  onClick={() => contextTodos.boxHandler(todo.idBox)}
+                  onClick={() => boxHandler(todo.idBox)}
                   className="open-close-list"
                 />
               </Grid>

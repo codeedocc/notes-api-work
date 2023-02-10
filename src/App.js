@@ -1,7 +1,7 @@
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { Box } from '@mui/material'
 import Navbar from './components/Navbar'
 import TodoArea from './components/TodoArea'
-import { QueryClient, QueryClientProvider } from 'react-query'
 
 const queryClient = new QueryClient()
 

@@ -6,8 +6,6 @@ import TodoBox from './TodoBox'
 const TodoArea = () => {
   const contextTodos = useTodoBoxContext()
 
-  console.log(contextTodos.todos.length)
-
   return (
     <>
       <Stack sx={{ flexDirection: 'column' }}>
@@ -22,7 +20,7 @@ const TodoArea = () => {
             <Typography
               id="modal-modal-title"
               sx={{
-                paddingBottom: '15px',
+                padding: 15,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

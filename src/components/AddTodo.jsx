@@ -1,3 +1,6 @@
+import { useTodoBoxContext } from '../context/TodoContext'
+import { useState } from 'react'
+import { colors } from '../utils/constants.js'
 import {
   Box,
   Button,
@@ -8,36 +11,27 @@ import {
   Typography,
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { useTodoBoxContext } from '../context/TodoContext'
-import { useState } from 'react'
-import { colors } from '../utils/constants.js'
+
+const InitialTodo = () => {
+  return {
+    title: '',
+    text: '',
+    description: '',
+    color: '',
+    id: Math.floor(Math.random() * Date.now()),
+    completed: false,
+  }
+}
 
 const AddTodo = () => {
   const contextTodos = useTodoBoxContext()
   const [open, setOpen] = useState(false)
-  const [todos, setTodos] = useState([
-    {
-      title: '',
-      text: '',
-      description: '',
-      color: '',
-      id: Math.floor(Math.random() * Date.now()),
-      completed: false,
-    },
-  ])
+  const [todos, setTodos] = useState(() => {
+    return [InitialTodo()]
+  })
 
   const addMoreNotes = () => {
-    setTodos((prevTodos) => [
-      ...prevTodos,
-      {
-        title: '',
-        text: '',
-        description: '',
-        color: '',
-        id: Math.floor(Math.random() * Date.now()),
-        completed: false,
-      },
-    ])
+    setTodos((prevTodos) => [...prevTodos, InitialTodo()])
   }
 
   const createTodoBox = () => {
@@ -55,21 +49,18 @@ const AddTodo = () => {
       }
 
       contextTodos.setTodos((prev) => [...prev, newBox])
-      setTodos([
-        {
-          title: '',
-          text: '',
-          description: '',
-          color: '',
-          id: Math.floor(Math.random() * Date.now()),
-          completed: false,
-        },
-      ])
+      setTodos([InitialTodo()])
       setOpen(false)
     } else {
       alert('У вас есть пустое поле "Заметка"')
       return
     }
+  }
+
+  const changeKeysValue = (e, idx, key) => {
+    const newTodos = [...todos]
+    newTodos[idx][key] = e.target.value
+    return newTodos
   }
 
   return (
@@ -94,81 +85,62 @@ const AddTodo = () => {
           }}
         >
           {todos.map((todo, idx) => (
-            <form key={todo.id}>
+            <div key={todo.id}>
               {idx === 0 ? (
                 <>
                   <Typography
-                    id="modal-modal-title"
                     variant="h6"
                     component="h2"
                     sx={{ paddingBottom: '15px' }}
                   >
                     Добавьте заголовок:
                   </Typography>
+
                   <TextField
                     autoComplete="off"
                     fullWidth
                     label="Заголовок"
-                    id="Заголовок"
                     size="small"
                     sx={{ paddingBottom: '15px' }}
                     value={todo.title}
-                    onChange={(e) => {
-                      const newTodos = [...todos]
-                      newTodos[idx].title = e.target.value
-                      setTodos(newTodos)
-                    }}
+                    onChange={(e) => setTodos(changeKeysValue(e, idx, 'title'))}
                   />
                 </>
               ) : (
-                <>
-                  <hr />
-                </>
+                <hr />
               )}
 
               <TextField
                 autoComplete="off"
                 fullWidth
                 label={`${idx + 1}. Заметка`}
-                id="Заметка"
                 size="small"
                 sx={{ paddingBottom: '15px' }}
                 value={todo.text}
-                onChange={(e) => {
-                  const newTodos = [...todos]
-                  newTodos[idx].text = e.target.value
-                  setTodos(newTodos)
-                }}
+                onChange={(e) => setTodos(changeKeysValue(e, idx, 'text'))}
               />
 
               <TextField
                 autoComplete="off"
                 fullWidth
                 label="Комментарий"
-                id="Комментарий"
                 size="small"
                 sx={{ paddingBottom: '20px' }}
                 value={todo.description}
-                onChange={(e) => {
-                  const newTodos = [...todos]
-                  newTodos[idx].description = e.target.value
-                  setTodos(newTodos)
-                }}
+                onChange={(e) =>
+                  setTodos(changeKeysValue(e, idx, 'description'))
+                }
               />
+
               <TextField
                 autoComplete="off"
-                id="outlined-select-currency"
                 select
                 label="Цвет"
                 size="small"
                 helperText="Выберите цвет для заметки"
                 sx={{ paddingBottom: '15px' }}
                 value={todo.color}
-                onChange={(e) => {
-                  const newTodos = [...todos]
-                  newTodos[idx].color = e.target.value
-                  setTodos(newTodos)
-                }}
+                onChange={(e) => setTodos(changeKeysValue(e, idx, 'color'))}
               >
                 {colors.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -176,6 +148,7 @@ const AddTodo = () => {
                   </MenuItem>
                 ))}
               </TextField>
+
               <Button
                 variant="contained"
                 sx={{
@@ -191,6 +164,7 @@ const AddTodo = () => {
               >
                 Создать
               </Button>
+
               <Button
                 disabled={todos.length === 3}
                 variant="contained"
@@ -207,10 +181,11 @@ const AddTodo = () => {
               >
                 Ещё
               </Button>
-            </form>
+            </div>
           ))}
         </Box>
       </Modal>
+
       <Fab color="default" aria-label="add">
         <AddIcon onClick={() => setOpen(true)} />
       </Fab>

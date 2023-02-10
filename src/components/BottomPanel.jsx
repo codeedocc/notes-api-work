@@ -3,6 +3,7 @@ import { useQuery } from 'react-query'
 import { useEffect, useState } from 'react'
 import { useNewsContext } from '../context/NewsContext'
 import AddTodo from './AddTodo'
+import Loader from './Loader'
 
 const NewsPanel = ({ showNews, headline }) => (
   <>
@@ -15,12 +16,12 @@ const NewsPanel = ({ showNews, headline }) => (
 )
 
 const BottomPanel = () => {
-  const contextNews = useNewsContext()
+  const { showNews } = useNewsContext()
   const [headline, setHeadline] = useState('Latest news...')
 
   const { isLoading, error, data } = useQuery('news', () =>
     fetch(
-      'https://cnbc.p.rapidapi.com/news/v2/list-trending?tag=Articles&count=5',
+      'https://cnbc.p.rapidapi.com/news/v2/list-trending?tag=Articles&count=30',
       {
         headers: {
           'X-RapidAPI-Key': process.env.REACT_APP_NEWS_KEY,
@@ -30,15 +31,15 @@ const BottomPanel = () => {
     ).then((res) => res.json())
   )
 
+  const info = data?.data?.mostPopularEntries
+
   useEffect(() => {
     const min = 0
-    const max = data?.data?.mostPopularEntries?.assets?.length - 1
+    const max = info?.assets?.length - 1
     const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min
 
-    setHeadline(data?.data?.mostPopularEntries?.assets[randomIndex]?.headline)
-  }, [contextNews.showNews, data?.data?.mostPopularEntries?.assets])
-
-  if (isLoading) return 'Loading...'
+    setHeadline(info?.assets[randomIndex]?.headline)
+  }, [showNews, info])
 
   if (error) return 'Error: ' + error.message
 
@@ -53,7 +54,8 @@ const BottomPanel = () => {
         bottom: '20px',
       }}
     >
-      <NewsPanel showNews={contextNews.showNews} headline={headline} />
+      {isLoading && <Loader />}
+      <NewsPanel showNews={showNews} headline={headline} />
       <AddTodo />
     </Stack>
   )

@@ -1,31 +1,18 @@
+import { useState } from 'react'
+import { useNewsContext } from '../context/NewsContext'
 import { Stack } from '@mui/material'
 import settings from '../assets/settings.svg'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import { useState } from 'react'
-import { useNewsContext } from '../context/NewsContext'
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
-  const contextNews = useNewsContext()
+  const { showNews, setShowNews } = useNewsContext()
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  const handleHideNews = () => {
-    contextNews.setShowNews(false)
-    setAnchorEl(null)
-  }
-
-  const handleShowNews = () => {
-    contextNews.setShowNews(true)
+  const showOrHideNews = (boolean) => {
+    setShowNews(boolean)
     setAnchorEl(null)
   }
 
@@ -53,8 +40,9 @@ const Navbar = () => {
       >
         To Do
       </p>
+
       <div>
-        <Button id="basic-button" onClick={handleClick}>
+        <Button onClick={(event) => setAnchorEl(event.currentTarget)}>
           <img
             src={settings}
             alt="settings"
@@ -67,16 +55,16 @@ const Navbar = () => {
         <Menu
           anchorEl={anchorEl}
           open={open}
-          onClose={handleClose}
+          onClose={() => setAnchorEl(null)}
           MenuListProps={{
             'aria-labelledby': 'basic-button',
           }}
         >
-          {!contextNews.showNews && (
-            <MenuItem onClick={handleShowNews}>Show news</MenuItem>
+          {!showNews && (
+            <MenuItem onClick={() => showOrHideNews(true)}>Show news</MenuItem>
           )}
-          {contextNews.showNews && (
-            <MenuItem onClick={handleHideNews}>Hide news</MenuItem>
+          {showNews && (
+            <MenuItem onClick={() => showOrHideNews(false)}>Hide news</MenuItem>
           )}
         </Menu>
       </div>
