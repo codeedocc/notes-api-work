@@ -106,6 +106,7 @@ const AddTodo = () => {
                     Добавьте заголовок:
                   </Typography>
                   <TextField
+                    autoComplete="off"
                     fullWidth
                     label="Заголовок"
                     id="Заголовок"
@@ -126,6 +127,7 @@ const AddTodo = () => {
               )}
 
               <TextField
+                autoComplete="off"
                 fullWidth
                 label={`${idx + 1}. Заметка`}
                 id="Заметка"
@@ -140,6 +142,7 @@ const AddTodo = () => {
               />
 
               <TextField
+                autoComplete="off"
                 fullWidth
                 label="Комментарий"
                 id="Комментарий"
@@ -153,6 +156,7 @@ const AddTodo = () => {
                 }}
               />
               <TextField
+                autoComplete="off"
                 id="outlined-select-currency"
                 select
                 label="Цвет"
