@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import openList from '../assets/openList.svg'
+import openList from '../assets/images/openList.svg'
 import TodoList from './TodoList'
 
 export const StyledPaper = styled(Paper)(() => ({

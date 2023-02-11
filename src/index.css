@@ -65,7 +65,7 @@ body {
 
 .slider:before {
   position: absolute;
-  content: url('./assets/cross.svg');
+  content: url('./assets/images/cross.svg');
   height: 22px;
   width: 25px;
   left: 4px;
@@ -84,7 +84,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  content: url('./assets/checkmark.svg');
+  content: url('./assets/images/checkmark.svg');
   -webkit-transform: translateX(18px);
   -ms-transform: translateX(18px);
   transform: translateX(18px);

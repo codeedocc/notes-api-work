@@ -3,7 +3,7 @@ import { StyledPaper } from './TodoBox'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import closeList from '../assets/closeList.svg'
+import closeList from '../assets/images/closeList.svg'
 import TodoNote from './TodoNote'
 
 const TodoList = ({ todo }) => {

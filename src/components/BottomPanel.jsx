@@ -50,8 +50,9 @@ const BottomPanel = () => {
       pr={5}
       pb={4}
       sx={{
-        position: 'sticky',
+        position: 'fixed',
         bottom: '20px',
+        right: '20px',
       }}
     >
       {isLoading && <Loader />}

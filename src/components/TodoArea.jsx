@@ -1,6 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { useTodoBoxContext } from '../context/TodoContext'
-import BottomPanel from './BottomPanel'
 import TodoBox from './TodoBox'
 
 const TodoArea = () => {
@@ -8,11 +7,11 @@ const TodoArea = () => {
 
   return (
     <>
-      <Stack sx={{ flexDirection: 'column' }}>
+      <Stack sx={{ flexDirection: 'column', height: '100vh' }}>
         <Box
           sx={{
             backgroundColor: '#121212',
-            height: '100vh',
+            height: 'auto',
             color: '#fff',
           }}
         >
@@ -40,7 +39,6 @@ const TodoArea = () => {
           ))}
         </Box>
       </Stack>
-      <BottomPanel />
     </>
   )
 }

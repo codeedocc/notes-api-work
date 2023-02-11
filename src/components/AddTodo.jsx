@@ -1,12 +1,13 @@
 import { useTodoBoxContext } from '../context/TodoContext'
 import { useState } from 'react'
-import { colors } from '../utils/constants.js'
+import { colors } from '../assets/utils/constants.js'
 import {
   Box,
   Button,
   Fab,
   MenuItem,
   Modal,
+  Stack,
   TextField,
   Typography,
 } from '@mui/material'
@@ -77,11 +78,14 @@ const AddTodo = () => {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
+            height: 'auto',
+            maxHeight: '65%',
             width: { xs: '70%', md: '60%' },
             bgcolor: 'background.paper',
             boxShadow: 24,
             p: 4,
             borderRadius: '20px',
+            overflow: 'auto',
           }}
         >
           {todos.map((todo, idx) => (
@@ -148,41 +152,42 @@ const AddTodo = () => {
                   </MenuItem>
                 ))}
               </TextField>
-
-              <Button
-                variant="contained"
-                sx={{
-                  background: '#121212',
-                  position: 'absolute',
-                  right: '30px',
-                  bottom: '30px',
-                  '&:hover': {
-                    background: '#333',
-                  },
-                }}
-                onClick={() => createTodoBox()}
-              >
-                Создать
-              </Button>
-
-              <Button
-                disabled={todos.length === 3}
-                variant="contained"
-                sx={{
-                  background: '#121212',
-                  position: 'absolute',
-                  right: '150px',
-                  bottom: '30px',
-                  '&:hover': {
-                    background: '#333',
-                  },
-                }}
-                onClick={addMoreNotes}
-              >
-                Ещё
-              </Button>
             </div>
           ))}
+
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            sx={{
+              position: 'absoulte',
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                background: '#121212',
+                '&:hover': {
+                  background: '#333',
+                },
+              }}
+              onClick={addMoreNotes}
+            >
+              Ещё
+            </Button>
+
+            <Button
+              variant="contained"
+              sx={{
+                background: '#121212',
+                '&:hover': {
+                  background: '#333',
+                },
+              }}
+              onClick={() => createTodoBox()}
+            >
+              Создать
+            </Button>
+          </Stack>
         </Box>
       </Modal>
 
