@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/notes-api-work/static/css/main.7f07ace9.css",
-    "main.js": "/notes-api-work/static/js/main.81491b62.js",
+    "main.css": "/notes-api-work/static/css/main.ce30562c.css",
+    "main.js": "/notes-api-work/static/js/main.21901f18.js",
     "static/media/settings.svg": "/notes-api-work/static/media/settings.f258cd1ccd66ac61569de80874b6bb2d.svg",
     "static/media/closeList.svg": "/notes-api-work/static/media/closeList.c12a54ad732087750251152e480f9f02.svg",
     "index.html": "/notes-api-work/index.html",
     "static/media/openList.svg": "/notes-api-work/static/media/openList.c4ce12172460e8a0bb62e4b2d1db5d42.svg",
     "static/media/cross.svg": "/notes-api-work/static/media/cross.7ff1f6d0623e99d6cb30.svg",
     "static/media/checkmark.svg": "/notes-api-work/static/media/checkmark.fb4a82d2507ecaf034a0.svg",
-    "main.7f07ace9.css.map": "/notes-api-work/static/css/main.7f07ace9.css.map",
-    "main.81491b62.js.map": "/notes-api-work/static/js/main.81491b62.js.map"
+    "main.ce30562c.css.map": "/notes-api-work/static/css/main.ce30562c.css.map",
+    "main.21901f18.js.map": "/notes-api-work/static/js/main.21901f18.js.map"
   },
   "entrypoints": [
-    "static/css/main.7f07ace9.css",
-    "static/js/main.81491b62.js"
+    "static/css/main.ce30562c.css",
+    "static/js/main.21901f18.js"
   ]
 }
