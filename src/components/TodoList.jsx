@@ -5,9 +5,15 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import closeList from '../assets/images/closeList.svg'
 import TodoNote from './TodoNote'
+import removeBox from '../assets/images/removeBox.png'
+import { useEffect } from 'react'
 
 const TodoList = ({ todo }) => {
-  const { boxHandler } = useTodoBoxContext()
+  const { boxOpener, boxRemover, todos } = useTodoBoxContext()
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todo, todos])
 
   return (
     <>
@@ -40,20 +46,32 @@ const TodoList = ({ todo }) => {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'space-between',
               }}
             >
+              <span style={{ display: 'flex' }}>
+                <img
+                  src={closeList}
+                  alt="settings"
+                  height="30px"
+                  width="28.5px"
+                  onClick={() => boxOpener(todo.idBox)}
+                  className="open-close-list"
+                />
+
+                <Typography noWrap sx={{ fontSize: '24px', pl: '15px' }}>
+                  {todo.title}
+                </Typography>
+              </span>
+
               <img
-                src={closeList}
+                src={removeBox}
                 alt="settings"
                 height="30px"
-                width="28.5px"
-                onClick={() => boxHandler(todo.idBox)}
-                className="open-close-list"
+                width="30px"
+                onClick={() => boxRemover(todo.idBox, todo.title)}
+                className="box-remove"
               />
-
-              <Typography noWrap sx={{ fontSize: '24px', pl: '15px' }}>
-                {todo.title}
-              </Typography>
             </Grid>
           </StyledPaper>
 

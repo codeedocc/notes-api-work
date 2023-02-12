@@ -6,13 +6,18 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import openList from '../assets/images/openList.svg'
 import TodoList from './TodoList'
+import { useEffect } from 'react'
 
 export const StyledPaper = styled(Paper)(() => ({
   maxWidth: 800,
 }))
 
 const TodoBox = ({ todo }) => {
-  const { boxHandler } = useTodoBoxContext()
+  const { boxOpener, todos } = useTodoBoxContext()
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todo, todos])
 
   return (
     <>
@@ -82,7 +87,7 @@ const TodoBox = ({ todo }) => {
                   alt="settings"
                   height="30px"
                   width="28.5px"
-                  onClick={() => boxHandler(todo.idBox)}
+                  onClick={() => boxOpener(todo.idBox)}
                   className="open-close-list"
                 />
               </Grid>

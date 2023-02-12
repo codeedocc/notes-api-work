@@ -1,9 +1,11 @@
 import { useTodoBoxContext } from '../context/TodoContext'
 import { Grid, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import removeNote from '../assets/images/removeNote.png'
+import { useEffect } from 'react'
 
 const TodoNote = ({ note }) => {
-  const { doneHandler } = useTodoBoxContext()
+  const { doneHandler, noteRemover, todos } = useTodoBoxContext()
 
   const style = {
     textDecoration: note.completed ? 'line-through' : 'none',
@@ -11,6 +13,10 @@ const TodoNote = ({ note }) => {
     fontWeight: 600,
     fontFamily: 'Abhaya Libre SemiBold',
   }
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [note])
 
   return (
     <Grid item pb={2}>
@@ -63,6 +69,15 @@ const TodoNote = ({ note }) => {
               />
               <span className="slider"></span>
             </label>
+            &nbsp; &nbsp; &nbsp;
+            <img
+              src={removeNote}
+              alt="settings"
+              height="30px"
+              width="28.5px"
+              onClick={() => noteRemover(note.id)}
+              className="note-remove"
+            />
           </div>
         </Grid>
       </Grid>

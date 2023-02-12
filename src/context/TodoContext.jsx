@@ -9,7 +9,7 @@ export const useTodoBoxContext = () => {
 export const TodoBoxProvider = ({ children }) => {
   const [todos, setTodos] = useState([])
 
-  const boxHandler = (id) => {
+  const boxOpener = (id) => {
     setTodos(
       todos.map((todo) => {
         if (todo.idBox === id) {
@@ -18,6 +18,29 @@ export const TodoBoxProvider = ({ children }) => {
         return todo
       })
     )
+  }
+
+  const boxRemover = (id, title) => {
+    const youSure = window.confirm(`Вы точно хотите удалить ${title}?`)
+
+    if (youSure) {
+      setTodos(todos.filter((todo) => todo.idBox !== id))
+
+      localStorage.removeItem('todos')
+    }
+  }
+
+  const noteRemover = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        return {
+          ...todo,
+          notes: todo.notes.filter((note) => note.id !== id),
+        }
+      })
+    )
+
+    localStorage.removeItem('todos')
   }
 
   const doneHandler = (id) => {
@@ -41,8 +64,10 @@ export const TodoBoxProvider = ({ children }) => {
       value={{
         todos,
         setTodos,
-        boxHandler,
+        boxOpener,
         doneHandler,
+        boxRemover,
+        noteRemover,
       }}
     >
       {children}

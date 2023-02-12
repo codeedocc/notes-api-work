@@ -6,13 +6,16 @@ body {
 }
 
 .settings,
-.open-close-list {
+.open-close-list,
+.box-remove,
+.note-remove {
   cursor: pointer;
   transition: scale 0.22s ease-in-out;
 }
 
 .settings:hover,
-.open-close-list:hover {
+.open-close-list:hover,
+.box-remove:hover {
   scale: 1.1;
 }
 

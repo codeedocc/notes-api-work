@@ -49,7 +49,9 @@ const AddTodo = () => {
         notes: [...todos],
       }
 
+      const prev = contextTodos.todos
       contextTodos.setTodos((prev) => [...prev, newBox])
+      localStorage.setItem('todos', JSON.stringify([...prev, newBox]))
       setTodos([InitialTodo()])
       setOpen(false)
     } else {

@@ -1,9 +1,17 @@
 import { Box, Stack, Typography } from '@mui/material'
+import { useEffect } from 'react'
 import { useTodoBoxContext } from '../context/TodoContext'
 import TodoBox from './TodoBox'
 
 const TodoArea = () => {
   const contextTodos = useTodoBoxContext()
+
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem('todos'))
+    if (storedTodos) {
+      contextTodos.setTodos(storedTodos)
+    }
+  }, [])
 
   return (
     <>
@@ -34,9 +42,11 @@ const TodoArea = () => {
             </Typography>
           )}
 
-          {contextTodos.todos.map((todo) => (
-            <TodoBox todo={todo} key={todo.idBox} />
-          ))}
+          {contextTodos.todos.map((todo) =>
+            todo.notes.length === 0 ? null : (
+              <TodoBox todo={todo} key={todo.idBox} />
+            )
+          )}
         </Box>
       </Stack>
     </>
