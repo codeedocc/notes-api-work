@@ -1,12 +1,12 @@
 import { useTodoBoxContext } from '../context/TodoContext'
 import { StyledPaper } from './TodoBox'
+import { useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import closeList from '../assets/images/closeList.svg'
 import TodoNote from './TodoNote'
 import removeBox from '../assets/images/removeBox.png'
-import { useEffect } from 'react'
 
 const TodoList = ({ todo }) => {
   const { boxOpener, boxRemover, todos } = useTodoBoxContext()
@@ -42,27 +42,46 @@ const TodoList = ({ todo }) => {
               item
               xs
               zeroMinWidth
-              pr={1}
+              px={2.5}
               sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
               }}
             >
-              <span style={{ display: 'flex' }}>
-                <img
-                  src={closeList}
-                  alt="settings"
-                  height="30px"
-                  width="28.5px"
-                  onClick={() => boxOpener(todo.idBox)}
-                  className="open-close-list"
-                />
+              <Box
+                sx={{
+                  overflow: 'hidden',
+                  wordWrap: 'break-word',
+                  maxWidth: '80%',
+                }}
+              >
+                <span style={{ display: 'flex' }}>
+                  <img
+                    src={closeList}
+                    alt="settings"
+                    height="30px"
+                    width="28.5px"
+                    onClick={() => boxOpener(todo.idBox)}
+                    className="open-close-list"
+                  />
 
-                <Typography noWrap sx={{ fontSize: '24px', pl: '15px' }}>
-                  {todo.title}
-                </Typography>
-              </span>
+                  <Typography
+                    noWrap
+                    sx={{
+                      fontSize: {
+                        lg: '24px',
+                        md: '24px',
+                        sm: '24px',
+                        xs: '18px',
+                      },
+                      pl: '15px',
+                    }}
+                  >
+                    {todo.title}
+                  </Typography>
+                </span>
+              </Box>
 
               <img
                 src={removeBox}
@@ -87,8 +106,8 @@ const TodoList = ({ todo }) => {
                 '16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)',
             }}
           >
-            {todo.notes.map((el) => (
-              <TodoNote note={el} key={el.id} />
+            {todo.notes.map((el, idx) => (
+              <TodoNote note={el} key={el.id} idx={idx} box={todo} />
             ))}
           </StyledPaper>
         </Box>

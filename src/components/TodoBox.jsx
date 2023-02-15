@@ -1,12 +1,12 @@
 import { useTodoBoxContext } from '../context/TodoContext'
 import { styled } from '@mui/material/styles'
+import { useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import openList from '../assets/images/openList.svg'
 import TodoList from './TodoList'
-import { useEffect } from 'react'
 
 export const StyledPaper = styled(Paper)(() => ({
   maxWidth: 800,
@@ -73,10 +73,16 @@ const TodoBox = ({ todo }) => {
                 <Typography
                   noWrap
                   sx={{
-                    fontSize: '24px',
+                    fontSize: {
+                      lg: '24px',
+                      md: '24px',
+                      sm: '24px',
+                      xs: '18px',
+                    },
                     fontWeight: 600,
                     fontFamily: 'Abhaya Libre SemiBold',
                     color: '#F4F4F4',
+                    width: '80%',
                   }}
                 >
                   {todo.title}

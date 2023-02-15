@@ -35,13 +35,29 @@ const AddTodo = () => {
     setTodos((prevTodos) => [...prevTodos, InitialTodo()])
   }
 
+  const closeModal = () => {
+    if (todos.length === 1) {
+      setOpen(false)
+      return
+    }
+
+    const modalWarning = window.confirm(
+      'Если вы закроете окно, все ваши несохраненные заметки пропадут. Продолжить?'
+    )
+
+    if (modalWarning) {
+      setTodos([InitialTodo()])
+      setOpen(false)
+    }
+  }
+
   const createTodoBox = () => {
     if (todos[0].title.trim() === '') {
       alert('Заполните заголовок')
       return
     }
 
-    if (todos.every((todo) => todo.text !== '')) {
+    if (todos.every((todo) => todo.text.trim() !== '' && todo.text !== '')) {
       const newBox = {
         title: todos[0].title,
         isOpened: false,
@@ -70,7 +86,7 @@ const AddTodo = () => {
     <div>
       <Modal
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={closeModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

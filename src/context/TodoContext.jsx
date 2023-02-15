@@ -21,7 +21,11 @@ export const TodoBoxProvider = ({ children }) => {
   }
 
   const boxRemover = (id, title) => {
-    const youSure = window.confirm(`Вы точно хотите удалить ${title}?`)
+    const youSure = window.confirm(
+      title.length > 10
+        ? `Вы точно хотите удалить "${title.slice(0, 15)}..."?`
+        : `Вы точно хотите удалить "${title}"?`
+    )
 
     if (youSure) {
       setTodos(todos.filter((todo) => todo.idBox !== id))
