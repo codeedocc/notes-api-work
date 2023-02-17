@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/notes-api-work/static/css/main.dbed5bc1.css",
-    "main.js": "/notes-api-work/static/js/main.a4150dcf.js",
+    "main.js": "/notes-api-work/static/js/main.4919c366.js",
     "static/media/removeNote.png": "/notes-api-work/static/media/removeNote.3c662b752278fc52f408.png",
     "static/media/settings.svg": "/notes-api-work/static/media/settings.f258cd1ccd66ac61569de80874b6bb2d.svg",
     "static/media/closeList.svg": "/notes-api-work/static/media/closeList.c12a54ad732087750251152e480f9f02.svg",
@@ -10,10 +10,10 @@
     "static/media/cross.svg": "/notes-api-work/static/media/cross.7ff1f6d0623e99d6cb30.svg",
     "static/media/checkmark.svg": "/notes-api-work/static/media/checkmark.fb4a82d2507ecaf034a0.svg",
     "main.dbed5bc1.css.map": "/notes-api-work/static/css/main.dbed5bc1.css.map",
-    "main.a4150dcf.js.map": "/notes-api-work/static/js/main.a4150dcf.js.map"
+    "main.4919c366.js.map": "/notes-api-work/static/js/main.4919c366.js.map"
   },
   "entrypoints": [
     "static/css/main.dbed5bc1.css",
-    "static/js/main.a4150dcf.js"
+    "static/js/main.4919c366.js"
   ]
 }
