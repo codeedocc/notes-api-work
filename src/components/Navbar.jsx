@@ -61,10 +61,14 @@ const Navbar = () => {
           }}
         >
           {!showNews && (
-            <MenuItem onClick={() => showOrHideNews(true)}>Show news</MenuItem>
+            <MenuItem onClick={() => showOrHideNews(true)}>
+              Показать новости
+            </MenuItem>
           )}
           {showNews && (
-            <MenuItem onClick={() => showOrHideNews(false)}>Hide news</MenuItem>
+            <MenuItem onClick={() => showOrHideNews(false)}>
+              Скрыть новости
+            </MenuItem>
           )}
         </Menu>
       </div>

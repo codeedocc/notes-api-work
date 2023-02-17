@@ -2,9 +2,10 @@ import { useTodoBoxContext } from '../context/TodoContext'
 import { Grid, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useEffect } from 'react'
+import { StyledPaper } from './TodoBox'
 import removeNote from '../assets/images/removeNote.png'
 
-const TodoNote = ({ note, idx, box }) => {
+const TodoNote = ({ note }) => {
   const { doneHandler, noteRemover, todos } = useTodoBoxContext()
 
   const style = {
@@ -19,7 +20,16 @@ const TodoNote = ({ note, idx, box }) => {
   }, [note])
 
   return (
-    <Grid item pb={box.notes.length !== idx + 1 && 2}>
+    <StyledPaper
+      sx={{
+        my: 1,
+        p: 2,
+        borderRadius: '25px',
+        background: `${note.completed ? '#1e1e1e' : '#282828'}`,
+        color: '#F4F4F4',
+        boxShadow: 'none',
+      }}
+    >
       <Grid container wrap="nowrap">
         <Box
           sx={{
@@ -91,7 +101,7 @@ const TodoNote = ({ note, idx, box }) => {
           </Box>
         </Grid>
       </Grid>
-    </Grid>
+    </StyledPaper>
   )
 }
 

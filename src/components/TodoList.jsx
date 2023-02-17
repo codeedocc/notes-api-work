@@ -106,8 +106,8 @@ const TodoList = ({ todo }) => {
                 '16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)',
             }}
           >
-            {todo.notes.map((el, idx) => (
-              <TodoNote note={el} key={el.id} idx={idx} box={todo} />
+            {todo.notes.map((el) => (
+              <TodoNote note={el} key={el.id} />
             ))}
           </StyledPaper>
         </Box>

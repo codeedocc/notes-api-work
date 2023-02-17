@@ -26,7 +26,6 @@ const InitialTodo = () => {
 
 const AddTodo = () => {
   const contextTodos = useTodoBoxContext()
-  const [open, setOpen] = useState(false)
   const [todos, setTodos] = useState(() => {
     return [InitialTodo()]
   })
@@ -37,7 +36,7 @@ const AddTodo = () => {
 
   const closeModal = () => {
     if (todos.length === 1) {
-      setOpen(false)
+      contextTodos.setOpenModal(false)
       return
     }
 
@@ -47,7 +46,7 @@ const AddTodo = () => {
 
     if (modalWarning) {
       setTodos([InitialTodo()])
-      setOpen(false)
+      contextTodos.setOpenModal(false)
     }
   }
 
@@ -69,7 +68,7 @@ const AddTodo = () => {
       contextTodos.setTodos((prev) => [...prev, newBox])
       localStorage.setItem('todos', JSON.stringify([...prev, newBox]))
       setTodos([InitialTodo()])
-      setOpen(false)
+      contextTodos.setOpenModal(false)
     } else {
       alert('У вас есть пустое поле "Заметка"')
       return
@@ -85,7 +84,7 @@ const AddTodo = () => {
   return (
     <div>
       <Modal
-        open={open}
+        open={contextTodos.openModal}
         onClose={closeModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -210,7 +209,7 @@ const AddTodo = () => {
       </Modal>
 
       <Fab color="default" aria-label="add">
-        <AddIcon onClick={() => setOpen(true)} />
+        <AddIcon onClick={() => contextTodos.setOpenModal(true)} />
       </Fab>
     </div>
   )

@@ -8,6 +8,7 @@ export const useTodoBoxContext = () => {
 
 export const TodoBoxProvider = ({ children }) => {
   const [todos, setTodos] = useState([])
+  const [openModal, setOpenModal] = useState(false)
 
   const boxOpener = (id) => {
     setTodos(
@@ -72,6 +73,8 @@ export const TodoBoxProvider = ({ children }) => {
         doneHandler,
         boxRemover,
         noteRemover,
+        openModal,
+        setOpenModal,
       }}
     >
       {children}
