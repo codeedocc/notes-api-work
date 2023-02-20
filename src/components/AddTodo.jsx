@@ -1,6 +1,7 @@
 import { useTodoBoxContext } from '../context/TodoContext'
 import { useState } from 'react'
 import { colors } from '../assets/utils/constants.js'
+import { toast } from 'react-hot-toast'
 import {
   Box,
   Button,
@@ -67,8 +68,11 @@ const AddTodo = () => {
       const prev = contextTodos.todos
       contextTodos.setTodos((prev) => [...prev, newBox])
       localStorage.setItem('todos', JSON.stringify([...prev, newBox]))
+
       setTodos([InitialTodo()])
       contextTodos.setOpenModal(false)
+
+      toast.success(`Вы создали "${todos[0].title}".`)
     } else {
       alert('У вас есть пустое поле "Заметка"')
       return

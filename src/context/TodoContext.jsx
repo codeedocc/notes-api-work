@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 const TodoBoxContext = createContext()
 
@@ -30,6 +31,8 @@ export const TodoBoxProvider = ({ children }) => {
 
     if (youSure) {
       setTodos(todos.filter((todo) => todo.idBox !== id))
+
+      toast.error(`Вы удалили "${title}".`)
 
       localStorage.removeItem('todos')
     }
